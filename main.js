@@ -1,62 +1,38 @@
-// uses strict mode so strings are not coerced, variables are not hoisted, etc... 
-'use strict';
-
-// brings in the assert module for unit testing
-const assert = require('assert');
-// brings in the readline module to access the command line
-const readline = require('readline');
-// use the readline module to print out to the command line
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+// uses strict mode so strings are not coerced, variables are not hoisted, etc...
+"use strict";
+// const compChoice = ["R", "P", "S"]; is a array of strings.  items in quotes are the string.  Can have many item inbetween quotes separated by a comma
+const compChoice = ["R", "P", "S"];
 
 // the function that will be called by the unit test below
+
 const rockPaperScissors = (hand1, hand2) => {
-
-  // Write code here
-  // Use the unit test to see what is expected
-
-}
-
-// the first function called in the program to get an input from the user
-// to run the function use the command: node main.js
-// to close it ctrl + C
-function getPrompt() {
-  rl.question('hand1: ', (answer1) => {
-    rl.question('hand2: ', (answer2) => {
-      console.log( rockPaperScissors(answer1, answer2) );
-      getPrompt();
-    });
-  });
-}
-
-// Unit Tests
-// You use them run the command: npm test main.js
-// to close them ctrl + C
-if (typeof describe === 'function') {
-
-  // most are notes for human eyes to read, but essentially passes in inputs then compares if the function you built return the expected output.
-  describe('#rockPaperScissors()', () => {
-    it('should detect a tie', () => {
-      assert.equal(rockPaperScissors('rock', 'rock'), "It's a tie!");
-      assert.equal(rockPaperScissors('paper', 'paper'), "It's a tie!");
-      assert.equal(rockPaperScissors('scissors', 'scissors'), "It's a tie!");
-    });
-    it('should detect which hand won', () => {
-      assert.equal(rockPaperScissors('rock', 'paper'), "Hand two wins!");
-      assert.equal(rockPaperScissors('paper', 'scissors'), "Hand two wins!");
-      assert.equal(rockPaperScissors('rock', 'scissors'), "Hand one wins!");
-    });
-    it('should scrub input to ensure lowercase with "trim"ed whitepace', () => {
-      assert.equal(rockPaperScissors('rOcK', ' paper '), "Hand two wins!");
-      assert.equal(rockPaperScissors('Paper', 'SCISSORS'), "Hand two wins!");
-      assert.equal(rockPaperScissors('rock ', 'sCiSsOrs'), "Hand one wins!");
-    });
-  });
-} else {
-
-  // always returns ask the user for another input
-  getPrompt();
-
-}
+	console.log(hand1, hand2);
+	let handOne = hand1.toUpperCase(); // the handOne must be a capital letter because the argument calls for a capital letter i.e. "R" or "S" or "P" or the argument will fail
+	let randPick = compChoice[Math.floor(Math.random() * compChoice.length)];
+	hand2 = randPick; //this is how we pass the randPick into the argument, without it there is nothing to evaluate
+	console.log("handOne- " + handOne); // "handOne -" labels your console log
+	console.log(`hand1 is ${hand1}, hand2 is ${hand2}`); // `hand1 is ${hand1}' labels your console log
+	if (handOne === hand2) {
+		// debugger; use to debug and freeze console at error
+		document.getElementById("win_lose").innerHTML = "TIE GAME!";
+	}
+	if (handOne === "R" && hand2 === "P") {
+		document.getElementById("win_lose").innerHTML = "YOU LOSE!";
+	}
+	if (handOne === "R" && hand2 === "S") {
+		document.getElementById("win_lose").innerHTML = "YOU WIN!";
+	}
+	if (handOne === "P" && hand2 === "S") {
+		document.getElementById("win_lose").innerHTML = "YOU LOSE!";
+	}
+	if (handOne === "P" && hand2 === "R") {
+		document.getElementById("win_lose").innerHTML = "YOU WIN!";
+	}
+	if (handOne === "S" && hand2 === "P") {
+		document.getElementById("win_lose").innerHTML = "YOU WIN!";
+	}
+	if (handOne === "S" && hand2 === "R") {
+		document.getElementById("win_lose").innerHTML = "YOU LOSE!";
+	}
+	document.getElementById("hand2").innerHTML = `Computer's choice is ${hand2}`; 
+};

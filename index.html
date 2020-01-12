@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <script src="main.js"></script>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <hr/>
-    <div id="display-element"></div>
-    <button onclick="displayDate()">Click Me</button>
-    <hr/>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="main.js"></script>
+	</head>
+	<body>
+		<h1>Welcome to Rock Paper Scissors!</h1>
+		<hr />
+
+		<label for="">Enter your choice</label>
+		<input type="text" id="hand1" name="a" style="text-transform:uppercase" />
+
+		<h3 id="hand2"></h3>
+		<div>
+			<button
+				onclick="rockPaperScissors(document.getElementById('hand1').value,null)"
+			>
+				PLAY
+			</button>
+			<!--null is entered to indicate that here we do not need the argument; however it is being called through JavaScript-->
+		</div>
+		<h1 id="win_lose"></h1>
+	</body>
 </html>
